@@ -51,11 +51,11 @@ class NofaroTest extends Command
          
 
             while ($count < $requests) {
-                $delay = intval(($count)/$rateLimitPerMinute);
+                $delay = intval(60/$rateLimitPerMinute);
 
 
                 if($count !== $requests){
-                    sleep($delay * 60);
+                    sleep($delay);
                 }
      
                 $response = Http::get("{$url}/api/hash/generate",["input"=>$input]);
