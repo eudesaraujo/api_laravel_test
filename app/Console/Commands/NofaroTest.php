@@ -52,9 +52,14 @@ class NofaroTest extends Command
 
             while ($count < $requests) {
                 $delay = intval(($count)/$rateLimitPerMinute);
+
+
+                if($count !== $requests){
+                    sleep($delay * 60);
+                }
      
                 $response = Http::get("{$url}/api/hash/generate",["input"=>$input]);
-     
+
                 $this->info($response);
      
                 $statusCode = $response->status();
@@ -62,15 +67,13 @@ class NofaroTest extends Command
                 $responseArr = $response = json_decode($response,1);
 
                 if(isset($responseArr["error"]) && $responseArr["error"] == "Too Many Attempts."){
-                    $delay = 1;
                     $this->info("Aguardando 1 minuto...");
+                    sleep(60);
                 }else{
                     $count++;
                 }
                 
-                if($count !== $requests){
-                    sleep($delay * 60);
-                }
+                
                
             }
  
