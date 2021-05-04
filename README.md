@@ -1,3 +1,4 @@
+
 ### Instruções de instalação
 
 Baixe o repositorio. 
@@ -13,41 +14,69 @@ Preencha as seguintes varáveis de ambiente com as conexões do seu banco de dad
     DB_DATABASE=nofaro_app
     DB_USERNAME=root
     DB_PASSWORD=
-    
+
+
+
 Roder os seguintes comandos.
+
+
 
 `composer install`
 
+
+
 `php artisan key:generate`
+
+
 
 Criar as tabelas:
 `php artisan migrate`
 
 
+
+
 Executar:
 `php artisan serve`
 
+
+
 ### Instruções de uso
 
+
+
 #### Rotas disponíveis:
+
+
+
 **Limite de requisições por minuto:** 10;
 
+
+
 Criar Hash com prefixo inicial de 4 zeros e uma key aleátoria.
+
+
 
 POST http://127.0.0.1:8000/api/hash/generate
 Parâmetros:
 
 |  Parâmetro | Descrição  | Tipo | Obrigátorio|
-| ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ |
 |  input |   String de entrada para gerar a hash | string | Sim
+
+
+
 
 Listagens das Hashs geradas.
 
+
+
 GET http://127.0.0.1:8000/api/hash/listing
+
+
 Parâmetros:
 
 |  Parâmetro | Descrição  | Tipo |Obrigátorio|
-| ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ |
 |  limit |   Limite de registro retornados Maxímo de 100. | Inteiro |Não
 | offset  |  Inicio da leitura dos registros | Inteiro | Não
 | attempts_less_than  |  Os registros retornados serão oque tiverem menor tentativas do que o número informado nesse parâmetro | Inteiro | Não
@@ -55,10 +84,12 @@ Parâmetros:
 
 #### Comandos disponíveis
 
-Teste da rota api/hash/generate passando a quantidade de requisições que serão feitas.
+- Teste da rota api/hash/generate passando a quantidade de requisições que serão feitas.
+
 `php artisan nofaro:test {string} --requests={inteiro}`
 
-Exemplo:
+- Exemplo:
+
 `php artisan nofaro:test "nafora" --requests=10`
 
 
@@ -84,3 +115,9 @@ Limitado por padrão a 100 registros por vez.
 Adicionado a possibilidade de paginação com os parâmetros **offset** e **limit**.
 Pesquisar por menor tentativa utilizando o parametro.
 Query montanda com eloquent na Model Hash.
+
+
+
+
+
+
