@@ -18,13 +18,13 @@ class Hash extends Model
         "attempts"
     ];
 
-    public function listing(Int $limit,int $offset,$attemptsLessThan = "") {
+    public function listing(Int $limit,int $offset,Int $attemptsLessThan = null) {
         try {
 
             $listing = $this->select("id","string_input","key_found");
 
             if($attemptsLessThan){
-                $listing =  $listing->where("attempts","<",$attempts);
+                $listing =  $listing->where("attempts","<",$attemptsLessThan);
             }
             
             $totalResults = $listing->count();

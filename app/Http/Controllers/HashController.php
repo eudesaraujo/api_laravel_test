@@ -60,7 +60,7 @@ class HashController extends Controller
             $limit = $limit > 100 ? 100 : $limit;
 
             $offset = isset($request->offset) ? $request->offset : 0;
-            $attemptsLessThan = isset($request->attempts_less_than) ? $request->attempts_less_than : "";
+            $attemptsLessThan = isset($request->attempts_less_than) ? $request->attempts_less_than : null;
 
             $Hash = new Hash;
             $listing = $Hash->listing($limit,$offset,$attemptsLessThan);
