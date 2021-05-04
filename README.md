@@ -7,15 +7,13 @@ Copie o .env.example para .env
 
 Preencha as seguintes varáveis de ambiente com as conexões do seu banco de dados.
 
-`
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=nofaro_app
-DB_USERNAME=root
-DB_PASSWORD=
-`
-
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=nofaro_app
+    DB_USERNAME=root
+    DB_PASSWORD=
+    
 Roder os seguintes comandos.
 
 `composer install`
