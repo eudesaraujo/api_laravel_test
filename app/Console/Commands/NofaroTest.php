@@ -43,7 +43,13 @@ class NofaroTest extends Command
 
             $arguments = $this->arguments();
             $input = isset($arguments['input']) ? $arguments['input'] : null;
-            $requests = (int)$this->option('requests');
+
+            $requests = $this->option('requests');
+
+            if(!$this->isInteger($requests) ){
+                abort(400,"Informe um número inteiro no parâmetro requests");
+            }
+         
 
             $url= env("APP_URL","http://localhost:8000");
             $count = 0;
@@ -54,11 +60,8 @@ class NofaroTest extends Command
                 $delay = intval(60/$rateLimitPerMinute);
 
 
-                if($count !== $requests){
-                    sleep($delay);
-                }
      
-                $response = Http::get("{$url}/api/hash/generate",["input"=>$input]);
+                $response = Http::post("{$url}/api/hash/generate",["input"=>$input]);
 
                 $this->info($response);
      
@@ -73,8 +76,11 @@ class NofaroTest extends Command
                     $count++;
                 }
                 
-                
-               
+            
+                if($count !== $requests){
+                    sleep($delay);
+                }
+
             }
  
             $this->info("Finish");
@@ -83,5 +89,9 @@ class NofaroTest extends Command
             $this->error($Exception->getMessage());
         }
      
+    }
+
+    function isInteger($input){
+        return(ctype_digit(strval($input)));
     }
 }
