@@ -90,7 +90,7 @@ Parâmetros:
 
 - Exemplo:
 
-`php artisan nofaro:test "nafora" --requests=10`
+`php artisan nofaro:test "nofaro" --requests=10`
 
 
 #### Explicação da solução implantada.
